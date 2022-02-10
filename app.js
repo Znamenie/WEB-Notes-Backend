@@ -1,18 +1,24 @@
 import express from "express";
 import mongoose from "mongoose";
-import router from "./router.js";
-import fileUpload from "express-fileupload";
+import routerAdditional from "./app_api/routes/additional.js";
+import 'dotenv/config'
 
 const PORT = 5000;
-const DB_URL = `mongodb+srv://Znamenie:Znamenie1@cluster0.kamwt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
-
+const DB_URL = process.env.DB_CONNECTION;
 const app = express();
 
+// MODULES
 app.use(express.json());
 app.use(express.static('static'));
-app.use(fileUpload({}));
-app.use('/api', router);
+app.use('/api/v0/additional', routerAdditional);
 
+
+// ROUTES
+app.get('/', (req, res) => {
+    res.status(200).json('Server working')
+})
+
+// Connect To DB
 async function startApp() {
     try {
         await mongoose.connect(DB_URL, { useUnifiedTopology: true, useNewUrlParser: true })
@@ -22,4 +28,5 @@ async function startApp() {
     }
 };
 
+// Start to the Connect
 startApp();

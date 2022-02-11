@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-const additional = new mongoose.Schema({
+const Additional = new mongoose.Schema({
     url: { 
         type: String, 
-        required: true 
+        required: true
     },
     title: { 
         type: String, 
@@ -12,6 +12,6 @@ const additional = new mongoose.Schema({
     topicsNested: {
         type: Array
     }
-});
+}, { collection: 'topics' });
 
-export default mongoose.model('additional', additional);
+export default mongoose.model('Additional', Additional);

@@ -8,11 +8,14 @@ const PORT = 5000;
 const DB_URL = process.env.DB_CONNECTION;
 const app = express();
 
+const ADDITIONAL_URL = '/api/v0/additional';
+const HELPFUL_URL = '/api/v0/helpful';
+
 // MODULES
 app.use(express.json());
 app.use(express.static('static'));
-app.use('/api/v0/additional', routerAdditional);
-app.use('/api/v0/helpful', routerHelpful);
+app.use(ADDITIONAL_URL, routerAdditional);
+app.use(HELPFUL_URL, routerHelpful);
 
 // ROUTES
 app.get('/', (req, res) => {

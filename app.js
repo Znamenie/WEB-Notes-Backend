@@ -1,7 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import errorHandler from "./app_api/utils/errorHandler.js";
 import routerAdditional from "./app_api/routes/additional.js";
 import routerHelpful from "./app_api/routes/helpful.js";
 import dotenv from 'dotenv'
@@ -36,8 +35,6 @@ async function startApp() {
     try {
         await mongoose.connect(DB_URL, options)
         app.listen(PORT, () => console.log('SERVER STARTED IN PORT ' + PORT));
-        console.log(DB_URL)
-        console.log(typeof(DB_URL))
     } catch (e) {
         console.log(e);
     }

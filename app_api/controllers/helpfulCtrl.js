@@ -1,4 +1,5 @@
-import Helpful from '../models/helpful.js'
+import Helpful from '../models/helpful.js';
+import errorHandler from '../utils/errorHandler.js';
 
 class HelpfulController {
     async getAllTopics(req, res) {
@@ -6,7 +7,7 @@ class HelpfulController {
             const topics = await Helpful.find();
             return res.json(topics);
         } catch (e) {
-            res.status(500).json(e);
+            errorHandler(res, e);
         }
     }
 }

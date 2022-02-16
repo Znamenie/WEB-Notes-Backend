@@ -31,7 +31,7 @@ async function startApp() {
         await mongoose.connect(DB_URL, { useUnifiedTopology: true, useNewUrlParser: true })
         app.listen(PORT, () => console.log('SERVER STARTED IN PORT ' + PORT));
     } catch (e) {
-        errorHandler(res, e);
+        errorHandler(e);
     }
 };
 

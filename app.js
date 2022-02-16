@@ -4,8 +4,9 @@ import cors from "cors";
 import errorHandler from "./app_api/utils/errorHandler.js";
 import routerAdditional from "./app_api/routes/additional.js";
 import routerHelpful from "./app_api/routes/helpful.js";
-import 'dotenv/config'
+import dotenv from 'dotenv'
 
+dotenv.config()
 const PORT = 8563;
 const DB_URL = process.env.DB_CONNECTION;
 const app = express();

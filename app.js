@@ -14,6 +14,11 @@ const app = express();
 const ADDITIONAL_URL = '/api/v0/additional';
 const HELPFUL_URL = '/api/v0/helpful';
 
+const options = {
+    useUnifiedTopology: true, 
+    useNewUrlParser: true
+}
+
 // MODULES
 app.use(cors());
 app.use(express.json());
@@ -29,8 +34,10 @@ app.get('/', (req, res) => {
 // Connect To DB
 async function startApp() {
     try {
-        await mongoose.connect(DB_URL, { useUnifiedTopology: true, useNewUrlParser: true })
+        await mongoose.connect(DB_URL, options)
         app.listen(PORT, () => console.log('SERVER STARTED IN PORT ' + PORT));
+        console.log(DB_URL)
+        console.log(typeof(DB_URL))
     } catch (e) {
         console.log(e);
     }

@@ -1,6 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import winston from "winston";
+import expressWinston from "express-winston"
 import routerAdditional from "./app_api/routes/additional.js";
 import routerHelpful from "./app_api/routes/helpful.js";
 import dotenv from 'dotenv'
@@ -17,6 +19,22 @@ const options = {
     useUnifiedTopology: true, 
     useNewUrlParser: true
 }
+
+// winston logger
+app.use(expressWinston.logger({
+    transports: [
+        new winston.transports.Console()
+    ],
+    format: winston.format.combine(
+        winston.format.colorize(),
+        winston.format.json()
+    ),
+    meta: false,
+    msg: "HTTP  ",
+    expressFormat: true,
+    colorize: false,
+    ignoreRoute: function (req, res) { return false; }
+}));
 
 // MODULES
 app.use(cors());
